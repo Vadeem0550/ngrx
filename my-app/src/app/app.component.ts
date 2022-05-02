@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Store} from "@ngrx/store";
 
 @Component({
   selector: 'app-root',
@@ -9,22 +10,31 @@ export class AppComponent {
   counter = 0;
   updateAt?: number;
 
+  constructor(private _store: Store) {
+  }
+
+
   get cannotDecrease(): boolean {
     return this.counter <= 0;
   }
 
-  increase(): void {
+  increase() {
     this.updateAt = Date.now()
     this.counter++;
+    // this._store.dispatch(increase());
   }
 
-  decrease(): void {
+  decrease() {
     this.updateAt = Date.now()
     this.counter--;
+    // this._store.dispatch(decrease());
+
   }
 
-  clear(): void {
+  clear() {
     this.updateAt = Date.now()
     this.counter = 0;
+    // this._store.dispatch(clear());
+
   }
 }
